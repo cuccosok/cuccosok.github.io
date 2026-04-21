@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 184 95% 7%;
+    --foreground: 174 97% 50%;
+
+    --card: 184 95% 7%;
+    --card-foreground: 174 97% 50%;
+
+    --popover: 184 95% 7%;
+    --popover-foreground: 174 97% 50%;
+
+    --primary: 174 97% 50%;
+    --primary-foreground: 184 95% 7%;
+
+    --secondary: 200 95% 23%;
+    --secondary-foreground: 174 97% 50%;
+
+    --muted: 200 95% 23%;
+    --muted-foreground: 174 50% 60%;
+
+    --accent: 308 97% 50%;
+    --accent-foreground: 184 95% 7%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 174 97% 50%;
+    --input: 200 95% 23%;
+    --ring: 174 97% 50%;
+
+    --radius: 0.25rem;
+
+    --neon-cyan: 174 97% 50%;
+    --neon-pink: 322 97% 44%;
+    --neon-hot-pink: 308 97% 50%;
+    --cyber-dark: 184 95% 7%;
+    --cyber-mid: 200 95% 23%;
+
+    --sidebar-background: 184 95% 7%;
+    --sidebar-foreground: 174 97% 50%;
+    --sidebar-primary: 174 97% 50%;
+    --sidebar-primary-foreground: 184 95% 7%;
+    --sidebar-accent: 200 95% 23%;
+    --sidebar-accent-foreground: 174 97% 50%;
+    --sidebar-border: 174 97% 50%;
+    --sidebar-ring: 174 97% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  code, pre {
+    font-family: 'Share Tech Mono', monospace;
+  }
+}
+
+/* Custom cyberpunk scrollbar */
+@layer utilities {
+  .cyber-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .cyber-scrollbar::-webkit-scrollbar-track {
+    background: hsl(184 95% 7%);
+    border-left: 1px solid hsl(174 97% 50% / 0.3);
+  }
+  .cyber-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(174 97% 50% / 0.5);
+    border-radius: 0;
+  }
+  .cyber-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(308 97% 50% / 0.8);
+  }
+}
+
+/* Scan-line overlay */
+.scanlines::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+}
+
+/* Neon text glow */
+.neon-text-cyan {
+  text-shadow:
+    0 0 7px hsl(174 97% 50%),
+    0 0 10px hsl(174 97% 50%),
+    0 0 21px hsl(174 97% 50%),
+    0 0 42px hsl(174 97% 50% / 0.5);
+}
+
+.neon-text-pink {
+  text-shadow:
+    0 0 7px hsl(308 97% 50%),
+    0 0 10px hsl(308 97% 50%),
+    0 0 21px hsl(308 97% 50%),
+    0 0 42px hsl(308 97% 50% / 0.5);
+}
+
+/* Neon border glow */
+.neon-border-cyan {
+  box-shadow:
+    0 0 5px hsl(174 97% 50% / 0.5),
+    0 0 10px hsl(174 97% 50% / 0.3),
+    inset 0 0 5px hsl(174 97% 50% / 0.1);
+}
+
+.neon-border-pink {
+  box-shadow:
+    0 0 5px hsl(308 97% 50% / 0.5),
+    0 0 10px hsl(308 97% 50% / 0.3),
+    inset 0 0 5px hsl(308 97% 50% / 0.1);
+}
+
+/* Breathing animation for category cards */
+@keyframes breathing {
+  0%, 100% {
+    box-shadow:
+      0 0 5px hsl(174 97% 50% / 0.3),
+      0 0 10px hsl(174 97% 50% / 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 10px hsl(174 97% 50% / 0.6),
+      0 0 20px hsl(174 97% 50% / 0.3),
+      0 0 40px hsl(174 97% 50% / 0.1);
+  }
+}
+
+.breathing-glow {
+  animation: breathing 3s ease-in-out infinite;
+}
+
+/* Neon flicker */
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow:
+      0 0 7px hsl(308 97% 50%),
+      0 0 10px hsl(308 97% 50%),
+      0 0 21px hsl(308 97% 50%),
+      0 0 42px hsl(308 97% 50% / 0.5),
+      0 0 82px hsl(308 97% 50% / 0.3);
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+.neon-flicker {
+  animation: neon-flicker 4s infinite alternate;
+}
+
+/* Cyber corner accents for modals */
+.cyber-corners {
+  position: relative;
+}
+.cyber-corners::before,
+.cyber-corners::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: hsl(174 97% 50%);
+}
+.cyber-corners::before {
+  top: -2px;
+  left: -2px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+.cyber-corners::after {
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
