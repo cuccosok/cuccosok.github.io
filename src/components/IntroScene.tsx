@@ -20,13 +20,13 @@ function CSSRain() {
     window.addEventListener('resize', resize);
 
     const drops: { x: number; y: number; speed: number; length: number; opacity: number }[] = [];
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 520; i++) {
       drops.push({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-        speed: 2 + Math.random() * 5,
-        length: 10 + Math.random() * 20,
-        opacity: 0.2 + Math.random() * 0.4,
+        speed: 4 + Math.random() * 8,
+        length: 12 + Math.random() * 26,
+        opacity: 0.18 + Math.random() * 0.42,
       });
     }
 
