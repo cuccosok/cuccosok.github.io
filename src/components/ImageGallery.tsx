@@ -65,8 +65,6 @@ export default function ImageGallery({ images, initialIndex, onClose }: ImageGal
           {index + 1} / {images.length}
         </div>
       </div>
-
-      <div className="scanlines pointer-events-none" />
     </div>
   );
 }

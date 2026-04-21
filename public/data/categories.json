@@ -2,16 +2,16 @@
   {
     "id": "billentyuzetek",
     "label": "Billentyűzetek",
-    "image": "/data/items/billentyuzetek/cover.svg"
+    "image": "/data/items/billentyuzetek/cover.png"
   },
   {
     "id": "egerek",
     "label": "Egerek",
-    "image": "/data/items/egerek/cover.svg"
+    "image": "/data/items/egerek/cover.png"
   },
   {
     "id": "egyeb",
     "label": "Egyéb",
-    "image": "/data/items/egyeb/cover.svg"
+    "image": "/data/items/egyeb/cover.png"
   }
 ]

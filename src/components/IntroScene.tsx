@@ -1,5 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import cyberBg from '@/assets/cyber-bg.png';
+
+const sceneFrameClass = "absolute left-1/2 top-1/2 h-[max(66.6667vw,100vh)] w-[max(100vw,150vh)] -translate-x-1/2 -translate-y-1/2 [container-type:inline-size]";
 
 function CSSRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -63,15 +65,19 @@ function CSSRain() {
   );
 }
 
-export default function IntroScene() {
+interface IntroSceneProps {
+  children?: ReactNode;
+}
+
+export default function IntroScene({ children }: IntroSceneProps) {
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0 overflow-hidden">
       {/* Background image with edge fade */}
-      <div className="absolute inset-0 z-[1]">
+      <div className={`${sceneFrameClass} z-[1]`}>
         <img
           src={cyberBg}
           alt=""
-          className="w-full h-full object-cover"
+          className="h-full w-full object-fill"
         />
         {/* Edge fade overlay - vignette effect */}
         <div
@@ -90,6 +96,10 @@ export default function IntroScene() {
 
       {/* CSS Rain on top */}
       <CSSRain />
+
+      <div className={`${sceneFrameClass} z-[3] pointer-events-none`}>
+        {children}
+      </div>
     </div>
   );
 }

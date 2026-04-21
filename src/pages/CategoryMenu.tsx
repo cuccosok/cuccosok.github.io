@@ -19,12 +19,19 @@ export default function CategoryMenu() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 relative">
-      <h1 className="font-orbitron text-2xl md:text-4xl text-primary neon-text-cyan mb-12 tracking-[0.2em]">
-        VÁLASSZ KATEGÓRIÁT
-      </h1>
+    <div className="terminal-screen min-h-screen bg-background flex flex-col items-center justify-center p-6 relative overflow-hidden">
+      <div className="terminal-panel pointer-events-none" />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl w-full">
+      <div className="relative z-10 mb-12 text-center">
+        <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.35em] text-primary/45">
+          // INVENTORY ACCESS
+        </div>
+        <h1 className="font-orbitron text-2xl md:text-4xl text-primary neon-text-cyan mt-3 tracking-[0.2em]">
+          VÁLASSZ KATEGÓRIÁT<span className="terminal-cursor terminal-cursor-tight">_</span>
+        </h1>
+      </div>
+
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl w-full">
         {categories.map((cat) => (
           <button
             key={cat.id}

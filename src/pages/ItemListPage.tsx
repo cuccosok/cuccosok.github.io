@@ -9,6 +9,12 @@ interface ItemData {
   title: string;
 }
 
+const categoryLabels: Record<string, string> = {
+  billentyuzetek: 'Billentyűzetek',
+  egerek: 'Egerek',
+  egyeb: 'Egyéb',
+};
+
 export default function ItemListPage() {
   const { categoryId } = useParams<{ categoryId: string }>();
   const navigate = useNavigate();
@@ -42,20 +48,22 @@ export default function ItemListPage() {
     setGalleryState({ images: getImages(folder), index });
   };
 
+  const categoryTitle = categoryId ? categoryLabels[categoryId] ?? categoryId.toUpperCase().replace(/-/g, ' ') : '';
+
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
+    <div className="terminal-screen min-h-screen bg-background p-4 md:p-8 relative overflow-hidden">
       {/* Header */}
-      <div className="max-w-6xl mx-auto mb-8 flex items-center gap-4">
+      <div className="relative z-10 max-w-6xl mx-auto mb-8 flex items-center gap-4">
         <NeonButton variant="cyan" onClick={() => navigate('/menu')} className="text-xs px-4 py-2">
           ← Vissza
         </NeonButton>
         <h1 className="font-orbitron text-xl md:text-2xl text-primary neon-text-cyan tracking-[0.15em]">
-          {categoryId?.toUpperCase().replace(/-/g, ' ')}
+          {categoryTitle}<span className="terminal-cursor terminal-cursor-tight">_</span>
         </h1>
       </div>
 
       {/* Items */}
-      <div className="max-w-6xl mx-auto space-y-12">
+      <div className="relative z-10 max-w-6xl mx-auto space-y-12">
         {items.map((item) => {
           const images = getImages(item.folder);
           return (
